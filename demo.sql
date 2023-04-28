@@ -28,18 +28,29 @@ CREATE TABLE Customer(
 --     CONSTRAINT fk_ListOfPayment FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id)
 -- );
 
--- Create table Provider(
--- 	buyer_id integer not null,
--- 	Name varchar(150) not null,
--- 	Address varchar(500) not null,
--- 	Item_name varchar(30) not null,
---     quantity integer not null,
---     category varchar(30) not null,
--- 	Provider_Date date not null,
---     Check (buyer_id > 0),
---     Check (quantity > 0),
---     CONSTRAINT PK_Provider PRIMARY KEY (buyer_id)
--- );
+-- New provider and itemlist tables
+
+CREATE TABLE Provider(
+	Pid int not null,
+	Pname varchar(50) not null,
+	Paddress varchar(200) not null,
+	Pdate date not null,
+	CHECK (Pid > 0),
+	CONSTRAINT PK_provider PRIMARY KEY (Pid)
+	
+);
+
+CREATE TABLE ItemList(
+	Iid int not null,
+	Iname varchar(200) not null,
+	category varchar(100) not null,
+	Pname varchar(50) not null,
+	Quantity int not null,
+	CHECK (Iid > 0),
+	CHECK (Quantity > 0),
+	CONSTRAINT PK_ItemList PRIMARY KEY (Iid),
+    CONSTRAINT Fk_ItemList FOREIGN KEY (Pid) REFERENCES Provider(Pid)
+);
 
 
 CREATE TABLE Stock(
@@ -97,6 +108,13 @@ CREATE TABLE Stock(
 -- values (4, 'Dai Nam', 'Thu Dau 1  Binh Duong', 'Asus Laptop', 45, 'laptop', '2023-05-30');
 -- insert into Provider (buyer_id, Name, Address, Item_name, quantity, category, Provider_Date) 
 -- values (5, 'Hp', '45 Phu Tho province', 'Accer Laptop', 45, 'laptop', '2023-05-30');
+
+-- -- Fixed Provdier 
+-- insert into Provider (Pid, Pname, Paddress, Pdate) values (1, 'Vissan', '45 Phu Tho province', '2023-05-30');
+-- insert into Provider (Pid, Pname, Paddress, Pdate) values (2, 'Vissan', '45 Phu Tho province', '2023-05-30');
+-- insert into Provider (Pid, Pname, Paddress, Pdate) values (3, 'Uniqlo', '25 distric 9 Thu Duc', '2023-10-25');
+-- insert into Provider (Pid, Pname, Paddress, Pdate) values (4, 'Dai Nam', 'Thu Dau 1  Binh Duong', '2023-05-30');
+-- insert into Provider (Pid, Pname, Paddress, Pdate) values (5, 'Hp', '45 Phu Tho province', '2023-05-30');
 
 -- -- Stock
 -- insert into stock (item_Id, item_Name, cost, price) values (1, 'T-shirt summer vibe', 15, 10);
