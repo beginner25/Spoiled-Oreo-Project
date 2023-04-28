@@ -1,157 +1,31 @@
--- -- 10 frist table provider
-/*
- drop table vissan;
- drop table uniqlo;
- drop table mcCormick;
- drop table coca_cola;
- drop table enchanteur;
- drop table laFonte;
- drop table gKitchen;
- drop table DaLatGAP;
- drop table co_op;
- drop table pepsico;
- */
--- -- rest of the table
-drop table Stock;
-drop table ItemList;
-drop table Provider;
-drop table Defaulters;
-drop table ListOfPayment;
-drop table Customer;
 
+-- --  table
+drop table if exists Stock;
+drop table if exists ItemList;
+drop table if exists Provider;
+drop table if exists Defaulters;
+drop table if exists ListOfPayment;
+drop table if exists Customer;
 
-/*
-
-Create table vissan(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-    Check (quantity >= 100), 
-    CONSTRAINT PK_vissan PRIMARY KEY (Item_name)
-);
-
-Create table uniqlo(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-	Check (quantity >= 100), 
-    CONSTRAINT PK_uniqlo PRIMARY KEY (Item_name)
-);
-
-Create table mcCormick(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),    
-    Check (quantity >= 100), 
-    CONSTRAINT PK_mcCormick PRIMARY KEY (Item_name)
-);
-Create table coca_cola(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-    Check (quantity >= 100),
-    CONSTRAINT PK_coca_cola PRIMARY KEY (Item_name)
-);
-Create table enchanteur(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-    Check (quantity >= 100),
-    CONSTRAINT PK_enchanteur PRIMARY KEY (Item_name)
-);
-Create table laFonte(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-    Check (quantity >= 100),
-    CONSTRAINT PK_laFonte PRIMARY KEY (Item_name)
-);
-Create table gKitchen(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-    Check (quantity >= 100),
-    CONSTRAINT PK_gKitchen PRIMARY KEY (Item_name)
-);
-Create table DaLatGAP(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-    Check (quantity >= 100),
-    CONSTRAINT PK_DaLatGAP PRIMARY KEY (Item_name)
-);
-Create table co_op(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-    Check (quantity >= 100),
-    CONSTRAINT PK_co_op PRIMARY KEY (Item_name)
-);
-Create table pepsico(
-	Item_id integer not null,
-	Address varchar(500) not null,
-	Item_name varchar(100) not null,
-    quantity integer not null,
-    category varchar(30) not null,
-	Provider_Date date not null,
-    Check (Item_id > 0),
-    Check (quantity >= 100),
-    CONSTRAINT PK_pepsico PRIMARY KEY (Item_name)
-);
-*/
 Create table Provider(
 Pid integer not null,
 Pname varchar(30) not null,
 Paddress varchar(100) not null,
-Pdate date,
+Pdate date not null,
 check(Pid > 0),
-CONSTRAINT PK_Provider primary key (Pname)
+CONSTRAINT PK_Provider primary key (Pid)
 );
 
 Create table ItemList(
 Iid integer not null,
 Iname varchar(30) not null,
 category varchar(30) not null,
-Pname varchar(30) not null,
+Quantity integer not null,
+Pid integer not null,
 Check(Iid > 0),
+CHECK (Quantity >= 100),
 CONSTRAINT PK_ItemList primary key (Iid),
-CONSTRAINT fk_ItemList FOREIGN KEY (Pname) REFERENCES Provider(Pname)
+CONSTRAINT Fk_ItemList FOREIGN KEY (Pid) REFERENCES Provider(Pid)
 );
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
@@ -164,7 +38,6 @@ CREATE TABLE Stock(
     cost float not null,
     price float not null,
     CHECK (item_Id>0),
-	CONSTRAINT PK_Stock primary key (item_name),
     CONSTRAINT fk_Stock FOREIGN KEY (item_Id) REFERENCES ItemList(Iid)
    
 );
@@ -172,6 +45,7 @@ CREATE TABLE Stock(
 CREATE TABLE Customer(
     Customer_id integer not null, 
     Customer_name varchar(30)NOT NULL,
+	phone_number varchar(20) not null,
     Address varchar(100)not null,
     Item_name varchar(30) not null,
     Required_amount integer not null,
