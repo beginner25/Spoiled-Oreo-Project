@@ -1,7 +1,7 @@
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 																		-- Insert value for buyers -- 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
-
+/*
 -- insert value for vissan
 insert into vissan (Item_id, Address, Item_name, quantity, category, Provider_Date) values (1, '45 Phu Tho province', 'mayonnaise tuna', 100, 'canned food', '2023-04-30');
 insert into vissan (Item_id, Address, Item_name, quantity, category, Provider_Date) values (2, '45 Phu Tho province', 'mayonnaise chicken', 100, 'canned food', '2023-04-30');
@@ -129,7 +129,40 @@ insert into pepsico (Item_id, Address, Item_name, quantity, category, Provider_D
 insert into pepsico (Item_id, Address, Item_name, quantity, category, Provider_Date) values (7, '30 Hai Ba Trung', 'revive', 200, 'beverage', '2023-12-14');
 insert into pepsico (Item_id, Address, Item_name, quantity, category, Provider_Date) values (8, '30 Hai Ba Trung', 'mirinda', 200, 'beverage', '2023-12-14');
 insert into pepsico (Item_id, Address, Item_name, quantity, category, Provider_Date) values (9, '30 Hai Ba Trung', 'mountain dew', 200, 'beverage', '2023-12-14');
-insert into pepsico (Item_id, Address, Item_name, quantity, category, Provider_Date) values (10, '30 Hai Ba Trung', 'tea+', 200, 'beverage', '2023-12-14');
+insert into pepsico (Item_id, Address, Item_name, quantity, category, Provider_Date) values (10, '30 Hai Ba Trung', 'tea+', 200, 'beverage', '2023-12-14');*/
+
+insert into Provider(Pid, Pname, Paddress, Pdate) values (1, 'Vissan', '45 Phu Tho province', '2023-04-30');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (2, 'Uniqlo', '25 distric 9 Thu Duc', '2023-05-10');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (3, 'McCormick', '25 distric 9 Thu Duc', '2023-06-7');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (4, 'Coca_cola', '25 distric 9 Thu Duc', '2023-07-7');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (5, 'Enchanteur', '25 distric 9 Thu Duc', '2023-08-12');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (6, 'LaFonte', '25 distric 9 Thu Duc', '2023-09-18');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (7, 'GKitchen', '25 distric 9 Thu Duc', '2023-09-27');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (8, 'DaLatGAP', '25 distric 9 Thu Duc', '2023-10-5');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (9, 'Co_op', '25 distric 9 Thu Duc', '2023-11-29');
+insert into Provider(Pid, Pname, Paddress, Pdate) values (10, 'Pepsico', '25 distric 9 Thu Duc', '2023-12-14');
+
+/*insert into Provider(Pid, Pname, Paddress, Pdate) values (1, 'Vissan', '45 Phu Tho province', to_date('2023-04-30','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (2, 'Uniqlo', '25 distric 9 Thu Duc', to_date('2023-05-10','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (3, 'McCormick', '25 distric 9 Thu Duc', to_date('2023-06-7','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (4, 'Coca_cola', '25 distric 9 Thu Duc', to_date('2023-07-7','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (5, 'Enchanteur', '25 distric 9 Thu Duc', to_date('2023-08-12','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (6, 'LaFonte', '25 distric 9 Thu Duc', to_date('2023-09-18','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (7, 'GKitchen', '25 distric 9 Thu Duc', to_date('2023-09-27','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (8, 'DaLatGAP', '25 distric 9 Thu Duc', to_date('2023-10-5','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (9, 'Co_op', '25 distric 9 Thu Duc', to_date('2023-11-29','YYYY-MM-DD'));
+insert into Provider(Pid, Pname, Paddress, Pdate) values (10, 'Pepsico', '25 distric 9 Thu Duc', to_date('2023-12-14','YYYY-MM-DD'));*/
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+																		-- Insert value for ItemList-- 
+-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
+
+insert into ItemList(Iid, Iname, category, Pname) values (1, 'mayonnaise tuna', 'canned food', 'Vissan');
+insert into ItemList(Iid, Iname, category, Pname) values (2, 'tank top', 'clothe', 'Uniqlo');
+insert into ItemList(Iid, Iname, category, Pname) values (3, 'garlic powder', 'spices & herbs', 'McCormick');
+insert into ItemList(Iid, Iname, category, Pname) values (4, 'pepsi', 'beverage', 'Pepsico');
+insert into ItemList(Iid, Iname, category, Pname) values (5, 'plastic wrap', 'kitchenware', 'Co_op');
+
+
 
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
@@ -157,7 +190,7 @@ insert into stock(item_Id, item_name, category, amount, cost, price) values (16,
 insert into stock(item_Id, item_name, category, amount, cost, price) values (17, 'jeans','clothe', 500, 35, 49);
 insert into stock(item_Id, item_name, category, amount, cost, price) values (18, 'trousers','clothe', 500, 56, 100);
 insert into stock(item_Id, item_name, category, amount, cost, price) values (19, 'hoodie','clothe', 500, 27, 60);
-insert into stock(item_Id, item_name, category, amount, cost, price) values (20, 'coat','clothe', 500, 100, 200);
+insert into stock(item_Id, item_name, category, amount, cost, price) values (20, 'coat','clothe', 500, 100, 200); 
 
 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 

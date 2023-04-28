@@ -1,20 +1,26 @@
 -- -- 10 frist table provider
--- drop table vissan;
--- drop table uniqlo;
--- drop table mcCormick;
--- drop table coca_cola;
--- drop table enchanteur;
--- drop table laFonte;
--- drop table gKitchen;
--- drop table DaLatGAP;
--- drop table co_op;
--- drop table pepsico;
+/*
+ drop table vissan;
+ drop table uniqlo;
+ drop table mcCormick;
+ drop table coca_cola;
+ drop table enchanteur;
+ drop table laFonte;
+ drop table gKitchen;
+ drop table DaLatGAP;
+ drop table co_op;
+ drop table pepsico;
+ */
 -- -- rest of the table
--- drop table Defaulters;
--- drop table ListOfPayment;
--- drop table Stock;
--- drop table Customer;
+drop table Stock;
+drop table ItemList;
+drop table Provider;
+drop table Defaulters;
+drop table ListOfPayment;
+drop table Customer;
 
+
+/*
 
 Create table vissan(
 	Item_id integer not null,
@@ -128,6 +134,25 @@ Create table pepsico(
     Check (quantity >= 100),
     CONSTRAINT PK_pepsico PRIMARY KEY (Item_name)
 );
+*/
+Create table Provider(
+Pid integer not null,
+Pname varchar(30) not null,
+Paddress varchar(100) not null,
+Pdate date,
+check(Pid > 0),
+CONSTRAINT PK_Provider primary key (Pname)
+);
+
+Create table ItemList(
+Iid integer not null,
+Iname varchar(30) not null,
+category varchar(30) not null,
+Pname varchar(30) not null,
+Check(Iid > 0),
+CONSTRAINT PK_ItemList primary key (Iid),
+CONSTRAINT fk_ItemList FOREIGN KEY (Pname) REFERENCES Provider(Pname)
+);
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- 
 
@@ -136,10 +161,11 @@ CREATE TABLE Stock(
     item_name varchar(100) not null,
     category varchar (100) not null,
     amount integer not null,
-    cost double not null,
-    price double not null,
+    cost float not null,
+    price float not null,
     CHECK (item_Id>0),
-	CONSTRAINT PK_Stock primary key (item_name)
+	CONSTRAINT PK_Stock primary key (item_name),
+    CONSTRAINT fk_Stock FOREIGN KEY (item_Id) REFERENCES ItemList(Iid)
    
 );
 
@@ -156,15 +182,15 @@ CREATE TABLE Customer(
 
 CREATE TABLE ListOfPayment(
     Customer_id integer not null,
-	Money_paid boolean not null,
-    Money_pending double,
+	Money_paid integer not null,
+    Money_pending float,
     Check (Customer_id > 0),
     CONSTRAINT fk_ListOfPayment FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id)
 );
 
 CREATE TABLE Defaulters(
      Defaulters_id integer not null,
-     Money_pending double not null,
+     Money_pending float not null,
      Check (Defaulters_id > 0),
     CONSTRAINT fk_Defaulters_id FOREIGN KEY (Defaulters_id) REFERENCES Customer(Customer_id)
 );
