@@ -104,6 +104,8 @@ CREATE TABLE provider_purchase_detail(
     qunatity int not null,
     total_amount float not null,
     CHECK (quantity>0),
-    CONSTRAINT FK_provider_purchase_detail foreign key (PPI_id) REFERENCES provider_purchase_info(id)
+    CONSTRAINT FK_provider_purchase_detail foreign key (PPI_id) REFERENCES provider_purchase_info(id),
+	CONSTRAINT FK_provider_purchase_detail foreign key (item_id) REFERENCES Item_List(id),
+    CONSTRAINT FK_provider_purchase_detail foreign key (PPI_id) REFERENCES Item_List(costPrice)
 );
 
