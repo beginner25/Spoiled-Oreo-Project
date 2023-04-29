@@ -66,7 +66,7 @@ create table defaulters(
 	Customer_id integer,
     Customer_name varchar(200),
     Remain_amount float,
-    Constraint fk_defaulters foreign key (Customer_id) references customer(id),
+    Constraint fk_defaultersI foreign key (Customer_id) references customer(id),
     Constraint fk_defaulters foreign key (Customer_name) references customer(Customer_name)
 );
 
