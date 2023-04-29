@@ -72,7 +72,7 @@ create table defaulters(
 
 CREATE TABLE provider(
 	
-    id int not null,
+    id integer not null,
     provider_name varchar(100) not null,
     address varchar(250) not null,
     CHECK (id>0),
@@ -81,31 +81,30 @@ CREATE TABLE provider(
 );
 
 CREATE TABLE stock(
-	item_id int not null,
-    quantity int not null,
+	item_id integer not null,
+    quantity integer not null,
     CHECK (item_id>0),
     CHECK (quantity>0),
     CONSTRAINT FK_stock FOREIGN KEY (item_id) REFERENCES Item_List(id)
 );
 
 CREATE TABLE provider_purchase_info(
-	id int not null,
-    provider_id int not null,
+	id integer not null,
+    provider_id integer not null,
     purchase_date date not null,
     CHECK (id>0),
-    CONSTRAINT PK_provider_purchase_info primary key (id),
-    CONSTRAINT FK_provider_purchase_info FOREIGN KEY (provider_id) REFERENCES provider(id)
+    CONSTRAINT PK_PPI_id primary key (id),
+    CONSTRAINT FK_PPI FOREIGN KEY (provider_id) REFERENCES provider(id)
 );
 
 CREATE TABLE provider_purchase_detail(
- 	 PPI_ID int not null,
-     item_id int not null,
+ 	 PPI_ID integer not null,
+     item_id integer not null,
      price float not null,
-     quantity int not null,
+     quantity integer not null,
      total_amount float not null,
      CHECK (quantity>0),
      CONSTRAINT FK_PPD_Id foreign key (PPI_Id) REFERENCES provider_purchase_info(id),
-     CONSTRAINT FK_PPD_ItemId foreign key (item_id) REFERENCES Item_List(id),
-     CONSTRAINT FK_PPD_Price foreign key (price) REFERENCES Item_List(costPrice)
+     CONSTRAINT FK_PPD_ItemId foreign key (item_id) REFERENCES Item_List(id)
 );
 
