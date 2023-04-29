@@ -98,14 +98,14 @@ CREATE TABLE provider_purchase_info(
 );
 
 CREATE TABLE provider_purchase_detail(
-	PPI_ID int not null,
-    item_id int not null,
-    price float not null,
-    qunatity int not null,
-    total_amount float not null,
-    CHECK (quantity>0),
-    CONSTRAINT FK_provider_purchase_detail foreign key (PPI_id) REFERENCES provider_purchase_info(id),
-	CONSTRAINT FK_provider_purchase_detail foreign key (item_id) REFERENCES Item_List(id),
-    CONSTRAINT FK_provider_purchase_detail foreign key (PPI_id) REFERENCES Item_List(costPrice)
+ 	 PPI_ID int not null,
+     item_id int not null,
+     price float not null,
+     quantity int not null,
+     total_amount float not null,
+     CHECK (quantity>0),
+     CONSTRAINT FK_PPD_Id foreign key (PPI_Id) REFERENCES provider_purchase_info(id),
+     CONSTRAINT FK_PPD_ItemId foreign key (item_id) REFERENCES Item_List(id),
+     CONSTRAINT FK_PPD_Price foreign key (price) REFERENCES Item_List(costPrice)
 );
 
