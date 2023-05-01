@@ -82,9 +82,9 @@ CREATE TABLE provider(
 
 CREATE TABLE stock(
 	item_id integer not null,
-    quantity integer not null,
+    s_quantity integer not null,
     CHECK (item_id>0),
-    CHECK (quantity>0),
+    CHECK (s_quantity>0),
     CONSTRAINT FK_stock FOREIGN KEY (item_id) REFERENCES Item_List(id)
 );
 
